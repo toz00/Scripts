@@ -1,3 +1,4 @@
+import sys
 from PIL import Image
 import random
 
@@ -73,3 +74,14 @@ def decode_message(image_path):
         return message
     except UnicodeDecodeError:
         return None
+    
+def main():
+    if len(sys.argv) == 3:
+        encode_message(sys.argv[1], sys.argv[2])
+    elif len(sys.argv) == 2:
+        decode_message(sys.argv[1])
+    else:
+        print("Erreur : le script doit être exécuté avec un ou deux paramètres.")
+
+if __name__ == "__main__":
+    main()
