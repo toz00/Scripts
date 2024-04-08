@@ -36,8 +36,10 @@ def encode_message(image_path, message):
     
     # Update the image with the modified pixel data
     image.putdata(pixel_data)
-    
-    return image
+
+    image_path=image_path[:image_path.rfind('.')]
+
+    image.save(image_path + "encoded.png", "PNG", quality='keep')
 
 def decode_message(image_path):
     """
@@ -73,13 +75,15 @@ def decode_message(image_path):
         message = message_bytes.decode("utf-8")
         return message
     except UnicodeDecodeError:
-        return None
+        return "erreur"
     
 def main():
     if len(sys.argv) == 3:
         encode_message(sys.argv[1], sys.argv[2])
+        print("Deux arguments, encode")
     elif len(sys.argv) == 2:
-        decode_message(sys.argv[1])
+        print(decode_message(sys.argv[1]))
+        print("un argument, décode")
     else:
         print("Erreur : le script doit être exécuté avec un ou deux paramètres.")
 
