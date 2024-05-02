@@ -42,3 +42,4 @@ model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy']
 
 # Entraînement du modèle
 model.fit(X_train_pad, y_train, epochs=10, batch_size=16, validation_data=(X_test_pad, y_test))
+model.save("Whatappmodele")
